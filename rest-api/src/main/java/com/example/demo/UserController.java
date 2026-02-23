@@ -28,23 +28,23 @@ public class UserController {
         return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(user);
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> findAllUsers(@RequestParam(required = false) String gender,
-                                   @RequestParam(required = false) Integer age) {
-       List<User> userList = new ArrayList<>();
-       userList.add(new User(1L, "Ostad1", "ostad1@gmail.com"));
-       userList.add(new User(2L, "Ostad2", "ostad2@gmail.com"));
-       userList.add(new User(3L, "Ostad3", "ostad3@gmail.com"));
+//    @GetMapping
+//    public ResponseEntity<List<User>> findAllUsers(@RequestParam(required = false) String gender,
+//                                   @RequestParam(required = false) Integer age) {
+//       List<User> userList = new ArrayList<>();
+//       userList.add(new User(1L, "Ostad1", "ostad1@gmail.com"));
+//       userList.add(new User(2L, "Ostad2", "ostad2@gmail.com"));
+//       userList.add(new User(3L, "Ostad3", "ostad3@gmail.com"));
+//
+//       return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(userList);
+//    }
 
-       return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(userList);
-    }
-
-    @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User user) {
-        userService.saveUser(user);
-        String message = "user saved";
-        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(message);
-    }
+//    @PostMapping
+//    public ResponseEntity<?> createUser(@RequestBody User user) {
+//        userService.saveUser(user);
+//        String message = "user saved";
+//        return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(message);
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user) {
