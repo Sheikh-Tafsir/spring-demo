@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @CreationTimestamp
-    private LocalDateTime createdDate;
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    private LocalDateTime updatedDate;
-
-    @Version
-    private int version;
+    private LocalDateTime updatedAt;
+//
+//    @Version
+//    private int version;
 }
