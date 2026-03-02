@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATH">./logs</Property>
+        <Property name="LOG_FILE">demo-server.log</Property>
+        <Property name="PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - [userId=%X{userId}] %msg%n
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+
+        <RollingFile name="File"
+                     fileName="${LOG_PATH}/${LOG_FILE}"
+                     filePattern="${LOG_PATH}/application-%d{yyyy-MM-dd}-%i.log.gz">
+
+            <PatternLayout pattern="${PATTERN}"/>
+
+            <Policies>
+                <!-- Roll daily -->
+                <TimeBasedTriggeringPolicy interval="1"/>
+
+                <!-- Roll when file exceeds 10MB -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+
+            <!-- Keep last 30 rolled files -->
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Application package logging level -->
+        <Logger name="com.example.demo" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+
+        <!-- Spring framework logging level -->
+        <Logger name="org.springframework" level="INFO"/>
+
+        <!-- Root logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
